@@ -1,3 +1,28 @@
 {
-  "extends": ["config:recommended", ":assignee(sarod)", ":automergePatch"]
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+
+  "extends": ["config:recommended", ":assignee(sarod)", ":automergePatch"],
+
+  "packageRules": [
+    {
+      "description": "Automerge patch and minor devDependencies & engines changes",
+      "matchDepTypes": ["devDependencies", "engines"],
+      "matchUpdateTypes": ["patch", "minor"],
+      "matchPackageNames": "*",
+      "groupName": "devDependencies minor and path",
+      "automerge": true,
+      "automergeType": "branch",
+      "minimumReleaseAge": "5 days",
+      /* Mondays*/
+      "schedule": "* 0-7 * * 1"
+    }
+  ],
+
+  "lockFileMaintenance": {
+    "description": "Lock maintenance",
+    "enabled": true,
+    "automerge": true,
+    "schedule": "* 0-7 * * 1",
+    "automergeType": "branch"
+  }
 }
